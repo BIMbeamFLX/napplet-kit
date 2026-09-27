@@ -1,0 +1,82 @@
+{
+  "name": "@nappelin/napplet-kit",
+  "version": "0.1.0",
+  "description": "One way to build NIP-5D napplets that run in any shell: a guarded runtime layer, and a Vite build layer that writes the napplet metas and manifest tags and checks the artifact.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./vite": {
+      "types": "./dist/vite/index.d.ts",
+      "import": "./dist/vite/index.js"
+    },
+    "./check": {
+      "types": "./dist/check/check.d.ts",
+      "import": "./dist/check/check.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "bin": {
+    "napplet-kit": "./dist/check/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-css.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepublishOnly": "npm test"
+  },
+  "peerDependencies": {
+    "@napplet/sdk": "^0.28.0",
+    "@napplet/vite-plugin": "^0.14.1",
+    "nostr-tools": "^2.23.3",
+    "vite": ">=5"
+  },
+  "peerDependenciesMeta": {
+    "@napplet/vite-plugin": {
+      "optional": true
+    },
+    "nostr-tools": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@napplet/sdk": "0.28.0",
+    "@napplet/vite-plugin": "0.14.1",
+    "@types/node": "^22.18.0",
+    "nostr-tools": "^2.23.3",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.2",
+    "vite-plugin-singlefile": "^2.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BIMbeamFLX/napplet-kit.git"
+  },
+  "keywords": [
+    "napplet",
+    "nip-5d",
+    "nostr",
+    "vite-plugin",
+    "nappelin"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

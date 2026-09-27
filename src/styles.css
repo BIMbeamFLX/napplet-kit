@@ -1,0 +1,283 @@
+/*
+ * Shared napplet styling. Inlined into each artifact at build time — a napplet
+ * has no origin to fetch a stylesheet from.
+ *
+ * Colours are the --p-* properties theme.ts writes from the runtime theme; the
+ * values here are only the fallback for a shell with no NAP-THEME.
+ */
+
+:root {
+  --p-bg: #0a0705;
+  --p-fg: #efe6d2;
+  --p-primary: #e7b23c;
+  --p-surface: rgb(24, 21, 17);
+  --p-line: rgb(48, 43, 36);
+  --p-muted: rgb(140, 132, 119);
+  color-scheme: dark light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--p-bg);
+  color: var(--p-fg);
+}
+
+body {
+  font: 14px / 1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.bar {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid var(--p-line);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--p-muted);
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+.scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  padding: 8px;
+}
+
+/* One screen at a time: a fixed page of content and a 44px pager under it.
+   The pager's right edge stops short of the Totem shell's corner switcher. */
+.page-view {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  padding: 8px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.pager {
+  flex: 0 0 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 64px 0 8px;
+  border-top: 1px solid var(--p-line);
+}
+
+.pager[hidden] {
+  display: none;
+}
+
+.pager-step {
+  width: 64px;
+  min-width: 64px;
+  font-size: 18px;
+}
+
+.pager-step:disabled {
+  opacity: 0.35;
+}
+
+.pager-mid {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--p-muted);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.pager-mid i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--p-line);
+}
+
+.pager-mid i.on {
+  background: var(--p-primary);
+}
+
+/* Body copy held to a page: clamped, never scrolled. */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+button {
+  /* The Totem shell's corner switcher is 44px; no control goes under it. */
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--p-line);
+  border-radius: 8px;
+  background: var(--p-surface);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button[data-on="true"] {
+  background: var(--p-primary);
+  border-color: var(--p-primary);
+  color: var(--p-bg);
+  font-weight: 600;
+}
+
+.link-button {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--p-primary);
+  text-align: left;
+  text-decoration: underline;
+}
+
+input,
+textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid var(--p-line);
+  border-radius: 8px;
+  background: var(--p-surface);
+  color: inherit;
+  font: inherit;
+}
+
+.card {
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--p-line);
+  border-radius: 10px;
+  background: var(--p-surface);
+  margin-bottom: 8px;
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+
+.who {
+  font-weight: 650;
+  color: var(--p-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.when,
+.muted {
+  color: var(--p-muted);
+  font-size: 12px;
+}
+
+.body {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.avatar {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--p-bg);
+  color: var(--p-muted);
+  font-weight: 600;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.notice {
+  margin: 12px;
+  padding: 14px;
+  border: 1px solid var(--p-line);
+  border-radius: 10px;
+  background: var(--p-surface);
+}
+
+.notice-title {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.notice-body {
+  margin: 0;
+  color: var(--p-muted);
+}
+
+.skeleton {
+  height: 56px;
+  border-radius: 10px;
+  background: var(--p-line);
+  margin-bottom: 8px;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Tiny state: the shell may give a napplet very little room. */
+@container (max-width: 320px) {
+  .when,
+  .title {
+    display: none;
+  }
+}

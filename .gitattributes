@@ -1,0 +1,3 @@
+# LF on every OS: a napplet is pinned by the sha256 of its bytes, and a CRLF checkout
+# leaks CR bytes into the built file (Git for Windows sets core.autocrlf=true).
+* text=auto eol=lf
